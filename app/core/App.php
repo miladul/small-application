@@ -10,14 +10,14 @@ class App{
        $url = $this->parseUrl();
 
         if(!isset($url[0])){
-            require_once '../app/controllers/'.$this->controller.'.php';
+            require_once 'app/controllers/'.$this->controller.'.php';
             $this->controller = new $this->controller;
             call_user_func_array([$this->controller, $this->method], []);
         }
        /**
         * Check Controller found or Not
        **/
-       if(file_exists('../app/controllers/'.$url[0].'Controller.php')){
+       if(file_exists('app/controllers/'.$url[0].'Controller.php')){
            $this->controller = $url[0].'Controller';
            unset($url[0]);
        }else{
@@ -25,7 +25,7 @@ class App{
            die;
        }
 
-       require_once '../app/controllers/'.$this->controller.'.php';
+       require_once 'app/controllers/'.$this->controller.'.php';
        $this->controller = new $this->controller;
 
 
